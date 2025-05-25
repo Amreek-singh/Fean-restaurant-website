@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block class %}class="sub_page"{% endblock class %}
+{% block main %}
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src=" {% static "images/about-img.png" %}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                We Are Feane
+              </h2>
+            </div>
+            <p>
+                Welcome to Feane, where flavor meets passion! We’re more than just a restaurant; we’re your go-to destination for mouthwatering burgers, piping-hot pizzas, creamy pastas, and perfectly crispy fries. Whether you’re craving comfort food or planning a special outing, we promise to make every bite an unforgettable experience.
+                At Feane, we believe good food brings people together. That's why our mission is to serve not only delicious meals but also memorable moments. Our cozy ambiance and easy online table booking ensure your dining experience is smooth and hassle-free. And don’t forget—your voice matters! Share your feedback and ratings to help us grow and continue delivering the food and service you love.
+            </p>
+            <a href="{% url "read_more" %}">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+{% endblock main %}

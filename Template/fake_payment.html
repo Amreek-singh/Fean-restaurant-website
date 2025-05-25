@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block class %}class="sub_page"{% endblock class %}
+{% block main %}
+<h2>Payment Processing...</h2>
+<p>Your order is being processed. Please wait a moment...</p>
+
+<script>
+    setTimeout(() => {
+        window.location.href = "{% url 'order_status' %}";
+    }, 3000);
+</script>
+
+
+{% endblock main %}

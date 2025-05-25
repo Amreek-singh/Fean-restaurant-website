@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block class %}class="sub_page"{% endblock class %}
+
+{% block main %}
+<div style="
+    background: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    width: 400px; 
+    font-family: Arial, sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 50px auto;
+">
+    <h2 style="text-align: center;">Book A Table</h2>
+
+    {% if message %}
+    <script>
+        window.onload = function() {
+            alert("{{ message }}");  // Shows the message in a popup
+        };
+    </script>
+    {% endif %}
+
+    <form method="POST" onsubmit="return validateForm()" style="width: 100%;">
+        {% csrf_token %}
+
+        <label for="id_Name" style="font-weight: bold;">Name:</label>
+        {{ form.Name }}
+        <br><br>
+
+        <label for="id_Phone_number" style="font-weight: bold;">Phone Number:</label>
+        {{ form.Phone_number }}
+        <br><br>
+
+        <label for="id_Email" style="font-weight: bold;">Email:</label>
+        {{ form.Email }}
+        <br><br>
+
+        <label for="id_Total_person" style="font-weight: bold;">Number of Persons:</label>
+        {{ form.Total_person }}
+        <span id="personError" style="color: red; font-size: 14px; display: block;"></span>
+        <br><br>
+
+        <label for="id_Booking_date" style="font-weight: bold;">Booking Date:</label>
+        {{ form.Booking_date }}
+        <br><br>
+
+        <button type="submit" style="
+            background-color: #28a745; 
+            color: white; 
+            padding: 10px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            width: 100%;
+        ">Book Now</button>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        var personCount = document.getElementById("id_Total_person").value;
+        var errorMessage = document.getElementById("personError");
+
+        if (personCount < 2 || personCount > 5) {
+            errorMessage.innerHTML = "Number of persons must be between 2 and 5.";
+            return false;
+        } else {
+            errorMessage.innerHTML = "";
+            return true;
+        }
+    }
+</script>
+{% endblock main %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block class %}class="sub_page"{% endblock class %}
+{% block main %}
+   <!-- feedback section -->
+   <div style="
+   background: white; 
+   padding: 20px; 
+   border-radius: 8px; 
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+   width: 400px; 
+   font-family: Arial, sans-serif; 
+   display: flex; 
+   flex-direction: column; 
+   justify-content: center; 
+   align-items: center; 
+   margin: 50px auto;
+">
+   <h2 style="text-align: center;">Feedback Form</h2>
+
+   {% if message %}
+       <p style="color: red; font-size: 14px;">{{ message }}</p>
+   {% endif %}
+
+   <form id="feedbackForm" method="POST" enctype="multipart/form-data" style="width: 100%;">
+       {% csrf_token %}
+
+       <label for="id_User_name" style="font-weight: bold;">Your Name:</label>
+       {{ form.User_name }}
+       <br><br>
+
+       <label for="id_Description" style="font-weight: bold;">Describe your experience:</label>
+       {{ form.Description }}
+       <br><br>
+
+       <label for="id_Rating" style="font-weight: bold;">Rate Us (1-5):</label>
+       {{ form.Rating }}
+       <span id="ratingError" style="color: red; font-size: 14px; display: block;"></span>
+       <br><br>
+
+       <label for="id_Image" style="font-weight: bold;">Upload an Image (Optional):</label>
+       {{ form.Image }}
+       <br><br>
+
+       <button type="submit" style="
+           background-color: #ffcc00; 
+           color: black; 
+           padding: 10px; 
+           border: none; 
+           border-radius: 5px; 
+           cursor: pointer; 
+           width: 100%;
+       ">Submit</button>
+   </form>
+</div>
+
+<script>
+   function validateForm() {
+       var ratingValue = document.getElementById("id_Rating").value;
+       var errorMessage = document.getElementById("ratingError");
+
+       if (ratingValue < 1 || ratingValue > 5) {
+           errorMessage.innerHTML = "Rating must be between 1 and 5.";
+           return false;
+       } else {
+           errorMessage.innerHTML = "";
+           return true;
+       }
+   }
+
+   document.getElementById("feedbackForm").onsubmit = function() {
+       setTimeout(function() {
+           document.getElementById("feedbackForm").reset();
+       }, 500);
+   };
+</script>
+{% endblock main %}

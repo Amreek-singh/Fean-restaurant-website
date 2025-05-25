@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block class %}class="sub_page"{% endblock class %}
+{% block main %}
+
+<h2>Order Status</h2>
+<p>Tracking ID: 123456</p>
+<p>Status: {{ order.status }}</p>
+<p>Estimated Delivery: 2-3 days</p>
+
+<a href="{% url 'menu' %}" class="btn btn-success">Back to Menu</a>
+
+{% endblock main %}

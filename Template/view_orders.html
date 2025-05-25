@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block class %}class="sub_page"{% endblock class %}
+{% block main %}
+<h2>Your Past Orders</h2>
+
+{% if orders %}
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>View Details</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>#{{ order.id }}</td>
+            <td>${{ order.total_price }}</td>
+            <td>{{ order.status }}</td>
+            <td><a href="{% url 'order_status' order.id %}" class="btn btn-primary">Track Order</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No orders placed yet.</p>
+{% endif %}
+
+<a href="{% url 'menu' %}" class="btn btn-success">Back to Menu</a>
+
+
+{% endblock main %}

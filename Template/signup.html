@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block class %}class="sub_page"{% endblock class %}
+
+{% block main %}
+<section class="signup_section" style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+">
+    <div style="
+        max-width: 500px;
+        width: 90%;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+    ">
+        <h2 style="color: #333; margin-bottom: 20px; font-size: 24px;">Sign Up</h2>
+
+        {% if error %}
+            <p style="color: red; font-size: 16px; margin-bottom: 10px;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label for="username" style="font-weight: 600; display: block; margin-bottom: 8px;">Username:</label>
+                <input type="text" name="username" placeholder="Enter your username" required style="
+                    width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;
+                    outline: none; transition: 0.3s; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+                ">
+            </div>
+
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label for="email" style="font-weight: 600; display: block; margin-bottom: 8px;">Email:</label>
+                <input type="email" name="email" placeholder="Enter your email" required style="
+                    width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;
+                    outline: none; transition: 0.3s; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+                ">
+            </div>
+
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label for="password" style="font-weight: 600; display: block; margin-bottom: 8px;">Password:</label>
+                <input type="password" name="password" placeholder="Enter your password" required style="
+                    width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;
+                    outline: none; transition: 0.3s; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+                ">
+            </div>
+
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label for="confirm_password" style="font-weight: 600; display: block; margin-bottom: 8px;">Confirm Password:</label>
+                <input type="password" name="confirm_password" placeholder="Confirm your password" required style="
+                    width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;
+                    outline: none; transition: 0.3s; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+                ">
+            </div>
+
+            <button type="submit" style="
+                width: 100%; padding: 14px; border: none; border-radius: 6px; font-size: 18px; cursor: pointer;
+                background-color: #28a745; color: white; font-weight: bold; transition: 0.3s;
+            ">Sign Up</button>
+        </form>
+    </div>
+</section>
+
+{% endblock main %}
